@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "MetaSearch",
+  "version": "1.0.0",
+  "description": "Fast search with smart caching and data persistence",
+  "permissions": [
+    "storage",
+    "cookies",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://localhost/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "MetaSearch - Fast Search"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
