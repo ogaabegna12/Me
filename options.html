@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaSearch Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #020c2b 0%, #0f1429 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 32px;
+            color: #e0e7ff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #14d4a8, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .settings-section {
+            background: rgba(15, 20, 41, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(20, 212, 168, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .settings-section h2 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #14d4a8;
+        }
+
+        .setting-item {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: rgba(224, 231, 255, 0.7);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(20, 212, 168, 0.3);
+            border-radius: 8px;
+            background: rgba(15, 20, 41, 0.4);
+            color: #e0e7ff;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: rgba(20, 212, 168, 0.8);
+            box-shadow: 0 0 20px rgba(20, 212, 168, 0.2);
+        }
+
+        input::placeholder {
+            color: rgba(224, 231, 255, 0.4);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: 1px solid rgba(20, 212, 168, 0.3);
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(20, 212, 168, 0.2), rgba(14, 165, 233, 0.2));
+            color: #14d4a8;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, rgba(20, 212, 168, 0.3), rgba(14, 165, 233, 0.3));
+            border-color: rgba(20, 212, 168, 0.6);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            display: block;
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: block;
+        }
+
+        .info-box {
+            background: rgba(20, 212, 168, 0.1);
+            border-left: 3px solid rgba(20, 212, 168, 0.5);
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: rgba(224, 231, 255, 0.8);
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ MetaSearch Settings</h1>
+
+        <div class="settings-section">
+            <h2>API Configuration</h2>
+            
+            <div class="setting-item">
+                <label for="apiUrl">Backend API URL</label>
+                <input 
+                    type="text" 
+                    id="apiUrl" 
+                    placeholder="https://metasearch-api-xyz.vercel.app"
+                >
+                <div class="info-box">
+                    Your Vercel backend URL. After deployment, paste your Vercel URL here.
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <label for="resultsPerPage">Results Per Page</label>
+                <select id="resultsPerPage">
+                    <option value="5">5 Results</option>
+                    <option value="8" selected>8 Results</option>
+                    <option value="10">10 Results</option>
+                    <option value="15">15 Results</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <label for="cacheTime">Cache Duration (Hours)</label>
+                <input 
+                    type="number" 
+                    id="cacheTime" 
+                    min="0" 
+                    max="168"
+                    value="1"
+                >
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Privacy & Data</h2>
+            
+            <div class="setting-item checkbox-item">
+                <input 
+                    type="checkbox" 
+                    id="enableCookies" 
+                    checked
+                >
+                <label for="enableCookies">Store search cookies</label>
+            </div>
+
+            <div class="setting-item checkbox-item">
+                <input 
+                    type="checkbox" 
+                    id="enableHistory" 
+                    checked
+                >
+                <label for="enableHistory">Keep search history</label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Maintenance</h2>
+            
+            <div class="button-group">
+                <button id="saveBtn">Save Settings</button>
+                <button id="resetBtn">Reset Default</button>
+                <button id="clearCacheBtn">Clear Cache</button>
+            </div>
+
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+
+        <div class="settings-section">
+            <h2>About</h2>
+            <div style="font-size: 12px; line-height: 1.6;">
+                <p><strong>MetaSearch v1.0.0</strong></p>
+                <p style="margin-top: 8px;">Fast search with smart caching and Chrome cookie storage.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
